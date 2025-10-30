@@ -3,9 +3,14 @@
     {
       "day": "Day 1",
       "title": "Introduction to Arrays",
-      "description": "Learn about arrays, their properties, and basic operations",
-      "folder": "day-1",
-      "pdfFile": "day-1-arrays.pdf"
+      "description": "## What is an Array?...",
+      "folder": "day-1"
+    },
+    {
+      "day": "Day 2",
+      "title": "Data Structures and Algorithms: Lists and Arrays in Python",
+      "description": "## Table of Contents...",
+      "folder": "day-2"
     }
   ]
 }

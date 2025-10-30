@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures and Algorithms: Lists and Arrays in Python - DSA Notes</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/markdown.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../index.html">🏠 Home</a>
+                <span class="separator">/</span>
+                <span>Data Structures and Algorithms: Lists and Arrays in Python</span>
+            </nav>
+        </header>
+
+        <main class="content">
+            <article class="markdown-body">
+                <h1>Data Structures and Algorithms: Lists and Arrays in Python</h1>
+<h2>Table of Contents</h2>
+<ol>
+<li>Introduction</li>
+<li>Python Lists</li>
+<li>Arrays in Python</li>
+<li>Time Complexity Analysis</li>
+</ol>
+<hr>
+<h2>Introduction</h2>
+<h3>What are Lists and Arrays?</h3>
+<p><strong>Lists</strong> and <strong>Arrays</strong> are linear data structures that store elements in contiguous memory locations. They allow for efficient access to elements using indices.</p>
+<ul>
+<li><strong>Python Lists</strong>: Dynamic arrays that can hold heterogeneous data types</li>
+<li><strong>Arrays</strong>: Fixed-size, homogeneous data structures (via <code>array</code> module or NumPy)</li>
+</ul>
+<h3>Key Characteristics</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Python List</th>
+<th>Array (array module)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Size</td>
+<td>Dynamic</td>
+<td>Fixed (can be resized)</td>
+</tr>
+<tr>
+<td>Data Types</td>
+<td>Heterogeneous</td>
+<td>Homogeneous</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>More overhead</td>
+<td>More efficient</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Flexible</td>
+<td>Faster for numeric ops</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Python Lists</h2>
+<h3>1. List Creation</h3>
+<pre><code class="language-python"># Empty list
+empty_list = []
+empty_list = list()
+
+# List with elements
+numbers = [1, 2, 3, 4, 5]
+mixed = [1, &quot;hello&quot;, 3.14, True]
+
+# List comprehension
+squares = [x**2 for x in range(10)]
+even_numbers = [x for x in range(20) if x % 2 == 0]
+
+# Nested lists (2D arrays)
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+# List from range
+numbers = list(range(1, 11))  # [1, 2, 3, ..., 10]
+</code></pre>
+<h3>2. Accessing Elements</h3>
+<pre><code class="language-python">arr = [10, 20, 30, 40, 50]
+
+# Indexing (O(1))
+first = arr[0]        # 10
+last = arr[-1]        # 50
+second_last = arr[-2] # 40
+
+# Slicing (O(k) where k is slice size)
+subset = arr[1:4]     # [20, 30, 40]
+first_three = arr[:3] # [10, 20, 30]
+last_two = arr[-2:]   # [40, 50]
+reverse = arr[::-1]   # [50, 40, 30, 20, 10]
+every_second = arr[::2] # [10, 30, 50]
+</code></pre>
+<h3>3. Modifying Lists</h3>
+<pre><code class="language-python">arr = [1, 2, 3, 4, 5]
+
+# Update element (O(1))
+arr[0] = 100  # [100, 2, 3, 4, 5]
+
+# Append (O(1) amortized)
+arr.append(6)  # [100, 2, 3, 4, 5, 6]
+
+# Insert at position (O(n))
+arr.insert(2, 999)  # [100, 2, 999, 3, 4, 5, 6]
+
+# Extend with another list (O(k))
+arr.extend([7, 8, 9])  # Adds multiple elements
+
+# Remove by value (O(n))
+arr.remove(999)  # Removes first occurrence
+
+# Pop (O(1) for last, O(n) for others)
+last = arr.pop()      # Removes and returns last element
+second = arr.pop(1)   # Removes and returns element at index 1
+
+# Delete by index (O(n))
+del arr[2]
+
+# Clear all elements (O(n))
+arr.clear()
+</code></pre>
+<h3>4. List Methods</h3>
+<pre><code class="language-python">arr = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# Sorting
+arr.sort()              # In-place sorting (O(n log n))
+sorted_arr = sorted(arr) # Returns new sorted list
+
+arr.sort(reverse=True)  # Descending order
+
+# Custom sorting
+arr.sort(key=lambda x: -x)  # Descending
+words = [&quot;apple&quot;, &quot;pie&quot;, &quot;zoo&quot;]
+words.sort(key=len)     # Sort by length
+
+# Reverse
+arr.reverse()           # In-place (O(n))
+reversed_arr = arr[::-1] # New reversed list
+
+# Count occurrences (O(n))
+count = arr.count(1)    # Returns 2
+
+# Find index (O(n))
+index = arr.index(5)    # Returns index of first occurrence
+
+# Copy
+shallow_copy = arr.copy()
+deep_copy = arr[:]
+</code></pre>
+<h3>5. List Comprehensions (Advanced)</h3>
+<pre><code class="language-python"># Basic comprehension
+squares = [x**2 for x in range(10)]
+
+# With condition
+evens = [x for x in range(20) if x % 2 == 0]
+
+# Multiple conditions
+filtered = [x for x in range(50) if x % 2 == 0 if x % 5 == 0]
+
+# Nested comprehension (flatten 2D list)
+matrix = [[1, 2], [3, 4], [5, 6]]
+flat = [num for row in matrix for num in row]  # [1, 2, 3, 4, 5, 6]
+
+# 2D list comprehension
+matrix = [[i*j for j in range(5)] for i in range(5)]
+
+# With if-else
+result = [x if x % 2 == 0 else -x for x in range(10)]
+</code></pre>
+<h3>6. Iterating Over Lists</h3>
+<pre><code class="language-python">arr = [10, 20, 30, 40, 50]
+
+# Basic iteration
+for item in arr:
+    print(item)
+
+# With index using enumerate
+for index, value in enumerate(arr):
+    print(f&quot;Index {index}: {value}&quot;)
+
+# Reverse iteration
+for item in reversed(arr):
+    print(item)
+
+# Iterating over multiple lists
+list1 = [1, 2, 3]
+list2 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+for num, char in zip(list1, list2):
+    print(num, char)
+</code></pre>
+<h3>7. List Operations</h3>
+<pre><code class="language-python"># Concatenation
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined = list1 + list2  # [1, 2, 3, 4, 5, 6]
+
+# Repetition
+repeated = [1, 2] * 3  # [1, 2, 1, 2, 1, 2]
+
+# Membership testing
+if 3 in list1:
+    print(&quot;Found&quot;)
+
+# Length
+length = len(list1)
+
+# Min and Max
+numbers = [5, 2, 8, 1, 9]
+minimum = min(numbers)  # 1
+maximum = max(numbers)  # 9
+total = sum(numbers)    # 25
+</code></pre>
+<hr>
+<h2>Arrays in Python</h2>
+<h3>1. Using <code>array</code> Module</h3>
+<pre><code class="language-python">import array
+
+# Create array with type code
+# &#39;i&#39; = signed integer
+int_array = array.array(&#39;i&#39;, [1, 2, 3, 4, 5])
+
+# Type codes:
+# &#39;b&#39; = signed char (1 byte)
+# &#39;B&#39; = unsigned char (1 byte)
+# &#39;h&#39; = signed short (2 bytes)
+# &#39;i&#39; = signed int (2-4 bytes)
+# &#39;l&#39; = signed long (4-8 bytes)
+# &#39;f&#39; = float (4 bytes)
+# &#39;d&#39; = double (8 bytes)
+
+# Operations (similar to lists)
+int_array.append(6)
+int_array.insert(0, 0)
+int_array.remove(3)
+value = int_array.pop()
+
+# Array-specific methods
+int_array.extend([7, 8, 9])
+int_array.reverse()
+
+# Convert to list
+list_from_array = int_array.tolist()
+
+# Convert from list
+new_array = array.array(&#39;i&#39;, [1, 2, 3])
+</code></pre>
+<h3>2. NumPy Arrays (Brief Overview)</h3>
+<pre><code class="language-python">import numpy as np
+
+# Create arrays
+arr = np.array([1, 2, 3, 4, 5])
+zeros = np.zeros(5)           # [0, 0, 0, 0, 0]
+ones = np.ones((3, 3))        # 3x3 matrix of ones
+range_arr = np.arange(0, 10, 2)  # [0, 2, 4, 6, 8]
+
+# Array operations (vectorized)
+arr2 = arr * 2                # Element-wise multiplication
+arr3 = arr + 10               # Add 10 to all elements
+
+# 2D arrays
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+shape = matrix.shape          # (2, 3)
+
+# Indexing and slicing
+element = matrix[0, 1]        # 2
+row = matrix[0, :]            # [1, 2, 3]
+column = matrix[:, 1]         # [2, 5]
+</code></pre>
+<hr>
+<h2>Time Complexity Analysis</h2>
+<h3>List Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Time Complexity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access by index</td>
+<td>O(1)</td>
+<td>Direct memory access</td>
+</tr>
+<tr>
+<td>Search (unsorted)</td>
+<td>O(n)</td>
+<td>Linear scan</td>
+</tr>
+<tr>
+<td>Search (sorted)</td>
+<td>O(log n)</td>
+<td>Binary search</td>
+</tr>
+<tr>
+<td>Insert at end</td>
+<td>O(1) amortized</td>
+<td>May need resize</td>
+</tr>
+<tr>
+<td>Insert at position</td>
+<td>O(n)</td>
+<td>Shift elements</td>
+</tr>
+<tr>
+<td>Delete at end</td>
+<td>O(1)</td>
+<td>Simple removal</td>
+</tr>
+<tr>
+<td>Delete at position</td>
+<td>O(n)</td>
+<td>Shift elements</td>
+</tr>
+<tr>
+<td>Append</td>
+<td>O(1) amortized</td>
+<td>Dynamic resizing</td>
+</tr>
+<tr>
+<td>Pop (last)</td>
+<td>O(1)</td>
+<td>Remove last</td>
+</tr>
+<tr>
+<td>Pop (index)</td>
+<td>O(n)</td>
+<td>Shift elements</td>
+</tr>
+<tr>
+<td>Slice</td>
+<td>O(k)</td>
+<td>k = slice size</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>O(n log n)</td>
+<td>Tim sort algorithm</td>
+</tr>
+<tr>
+<td>Reverse</td>
+<td>O(n)</td>
+<td>Swap elements</td>
+</tr>
+<tr>
+<td>Extend</td>
+<td>O(k)</td>
+<td>k = length of extension</td>
+</tr>
+<tr>
+<td>Count</td>
+<td>O(n)</td>
+<td>Linear scan</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>O(n)</td>
+<td>Linear scan</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>O(n)</td>
+<td>Find and shift</td>
+</tr>
+<tr>
+<td>Copy</td>
+<td>O(n)</td>
+<td>Create new list</td>
+</tr>
+</tbody></table>
+<h3>Space Complexity</h3>
+<ul>
+<li><strong>List</strong>: O(n) where n is number of elements</li>
+<li><strong>2D List</strong>: O(n × m) for n rows and m columns</li>
+<li><strong>List Comprehension</strong>: O(n) for output list</li>
+<li><strong>Slicing</strong>: O(k) where k is slice size (creates new list)</li>
+</ul>
+<h3>Comparison: List vs Array</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Python List</th>
+<th>Array (array module)</th>
+<th>NumPy Array</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Append</td>
+<td>O(1) amortized</td>
+<td>O(1) amortized</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Higher overhead</td>
+<td>Lower overhead</td>
+<td>Lowest overhead</td>
+</tr>
+<tr>
+<td>Element-wise ops</td>
+<td>Slow (loop needed)</td>
+<td>Moderate</td>
+<td>Fast (vectorized)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Tips for Optimization</h2>
+<h3>1. Use Built-in Functions</h3>
+<p>Python&#39;s built-in functions are optimized in C and are much faster than manual implementations.</p>
+<pre><code class="language-python"># Good - Using built-ins
+max_val = max(arr)
+min_val = min(arr)
+total = sum(arr)
+
+# Avoid - Manual implementation
+max_val = arr[0]
+for num in arr:
+    if num &gt; max_val:
+        max_val = num
+</code></pre>
+<h3>2. List Comprehensions Over Loops</h3>
+<p>List comprehensions are more readable and typically faster than traditional loops.</p>
+<pre><code class="language-python"># Good - List comprehension
+squares = [x**2 for x in range(100)]
+
+# Avoid - Traditional loop
+squares = []
+for x in range(100):
+    squares.append(x**2)
+</code></pre>
+<h3>3. Avoid Unnecessary Copies</h3>
+<p>Use in-place operations when possible to save memory and time.</p>
+<pre><code class="language-python"># Good - In-place sort
+arr.sort()
+
+# Avoid - Creates new list
+arr = sorted(arr)
+</code></pre>
+<h3>4. Use Appropriate Data Structures</h3>
+<p>Choose the right data structure for your use case.</p>
+<pre><code class="language-python"># For membership testing, use sets
+# Good
+lookup = set(arr)
+if x in lookup:  # O(1)
+    pass
+
+# Avoid
+if x in arr:  # O(n)
+    pass
+</code></pre>
+<h3>5. Preallocate Lists When Size is Known</h3>
+<pre><code class="language-python"># Good - Preallocate
+result = [0] * n
+for i in range(n):
+    result[i] = i ** 2
+
+# Less efficient - Dynamic growth
+result = []
+for i in range(n):
+    result.append(i ** 2)
+</code></pre>
+<hr>
+<h2>Common Pitfalls</h2>
+<h3>1. Modifying List While Iterating</h3>
+<pre><code class="language-python"># Wrong - Causes issues
+arr = [1, 2, 3, 0, 4, 0, 5]
+for i in range(len(arr)):
+    if arr[i] == 0:
+        arr.pop(i)  # Index changes during iteration
+
+# Correct - Use list comprehension
+arr = [x for x in arr if x != 0]
+
+# Or iterate backwards
+for i in range(len(arr) - 1, -1, -1):
+    if arr[i] == 0:
+        arr.pop(i)
+</code></pre>
+<h3>2. Shallow vs Deep Copy</h3>
+<pre><code class="language-python"># Shallow copy - Only copies first level
+arr2d = [[1, 2], [3, 4]]
+shallow = arr2d.copy()
+shallow[0][0] = 999  # Also changes arr2d!
+
+# Deep copy - For nested structures
+import copy
+deep = copy.deepcopy(arr2d)
+deep[0][0] = 999  # arr2d remains unchanged
+</code></pre>
+<h3>3. Mutable Default Arguments</h3>
+<pre><code class="language-python"># Wrong - Default list is shared across calls
+def add_item(item, lst=[]):
+    lst.append(item)
+    return lst
+
+# Correct - Use None as default
+def add_item(item, lst=None):
+    if lst is None:
+        lst = []
+    lst.append(item)
+    return lst
+</code></pre>
+<h3>4. Index Out of Bounds</h3>
+<pre><code class="language-python"># Always check bounds
+arr = [1, 2, 3]
+
+# Wrong
+value = arr[5]  # IndexError
+
+# Correct
+if 0 &lt;= i &lt; len(arr):
+    value = arr[i]
+
+# Or use try-except
+try:
+    value = arr[i]
+except IndexError:
+    print(&quot;Index out of range&quot;)
+</code></pre>
+<h3>5. Comparison Operators</h3>
+<pre><code class="language-python"># == checks value equality
+list1 = [1, 2, 3]
+list2 = [1, 2, 3]
+print(list1 == list2)  # True
+
+# is checks identity (same object)
+print(list1 is list2)  # False
+
+# Same object
+list3 = list1
+print(list1 is list3)  # True
+</code></pre>
+<hr>
+<h2>Conclusion</h2>
+<p>Lists and arrays are fundamental data structures in Python and form the foundation of many algorithms and data structures.</p>
+<h3>Key Takeaways</h3>
+<ol>
+<li><strong>Python Lists</strong> are dynamic, flexible, and can hold heterogeneous data</li>
+<li><strong>Arrays</strong> (from array module) are memory-efficient for homogeneous numeric data</li>
+<li><strong>NumPy Arrays</strong> are best for numerical computations and scientific computing</li>
+<li>Understanding <strong>time complexity</strong> is crucial for writing efficient code</li>
+<li>Use <strong>built-in functions</strong> and <strong>list comprehensions</strong> for better performance</li>
+<li>Be aware of <strong>common pitfalls</strong> like shallow copies and modifying lists during iteration</li>
+</ol>
+<h3>Best Practices</h3>
+<ul>
+<li>Choose the appropriate data structure based on your needs</li>
+<li>Use list comprehensions for concise and efficient code</li>
+<li>Leverage built-in functions instead of reinventing the wheel</li>
+<li>Be mindful of time and space complexity</li>
+<li>Write clean, readable code with proper error handling</li>
+</ul>
+<h3>Next Steps</h3>
+<p>To master lists and arrays:</p>
+<ol>
+<li>Practice implementing basic operations from scratch</li>
+<li>Solve problems on coding platforms (LeetCode, HackerRank, CodeForces)</li>
+<li>Learn common algorithms that use arrays (sorting, searching, etc.)</li>
+<li>Study advanced data structures built on arrays (heaps, hash tables)</li>
+<li>Analyze the time and space complexity of your solutions</li>
+</ol>
+<p>Remember: <strong>Consistent practice is the key to mastering data structures and algorithms!</strong></p>
+
+            </article>
+
+            <div class="download-section">
+                <a href="Data_Structures_and_Algorithms_Lists_and_Arrays_in_Python.pdf" class="download-btn" download>
+                📥 Download as PDF
+            </a>
+            </div>
+
+            <nav class="page-navigation">
+                <a href="../index.html" class="nav-btn">← Back to Topics</a>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for learning DSA</p>
+        </footer>
+    </div>
+</body>
+</html>

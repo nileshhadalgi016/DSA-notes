@@ -137,13 +137,18 @@ main {
     padding: 40px;
 }
 
-/* Download Section */
+/* Download Section - Sticky Bottom */
 .download-section {
-    margin: 40px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
-    padding: 30px;
-    background: var(--card-background);
-    border-radius: 10px;
+    padding: 20px;
+    background: white;
+    border-top: 2px solid var(--border-color);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .download-btn {
@@ -157,12 +162,23 @@ main {
     font-size: 1.1rem;
     transition: background 0.3s, transform 0.3s;
     box-shadow: var(--shadow);
+    margin: 5px;
 }
 
 .download-btn:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+}
+
+.no-pdf {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Add padding to bottom of content to prevent overlap with sticky button */
+.content {
+    padding-bottom: 100px;
 }
 
 /* Page Navigation */
