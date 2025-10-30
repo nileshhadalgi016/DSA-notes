@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - DSA Notes</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/markdown.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../index.html">🏠 Home</a>
+                <span class="separator">/</span>
+                <span>{{TITLE}}</span>
+            </nav>
+        </header>
+
+        <main class="content">
+            <article class="markdown-body">
+                {{CONTENT}}
+            </article>
+
+            <div class="download-section">
+                <a href="../pdf-notes/{{PDF_FILE}}" class="download-btn" download>
+                    📥 Download PDF Notes
+                </a>
+            </div>
+
+            <nav class="page-navigation">
+                <a href="../index.html" class="nav-btn">← Back to Topics</a>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for learning DSA</p>
+        </footer>
+    </div>
+</body>
+</html>

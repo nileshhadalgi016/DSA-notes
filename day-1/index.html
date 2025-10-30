@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Arrays - DSA Notes</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/markdown.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../index.html">🏠 Home</a>
+                <span class="separator">/</span>
+                <span>Introduction to Arrays</span>
+            </nav>
+        </header>
+
+        <main class="content">
+            <article class="markdown-body">
+                <h1>Day 1: Introduction to Arrays</h1>
+<h2>What is an Array?</h2>
+<p>An array is a data structure that stores a collection of elements of the same type in contiguous memory locations. It&#39;s one of the fundamental data structures in computer science.</p>
+<h2>Key Properties</h2>
+<ul>
+<li><strong>Fixed Size</strong>: Arrays have a fixed size that must be specified at creation</li>
+<li><strong>Indexed Access</strong>: Elements can be accessed using their index (0-based)</li>
+<li><strong>Contiguous Memory</strong>: Elements are stored in consecutive memory locations</li>
+<li><strong>Same Type</strong>: All elements must be of the same data type</li>
+</ul>
+<h2>Basic Operations</h2>
+<h3>1. Declaration and Initialization</h3>
+<pre><code class="language-python"># Python
+arr = [1, 2, 3, 4, 5]
+
+# Java
+int[] arr = {1, 2, 3, 4, 5};
+</code></pre>
+<h3>2. Accessing Elements</h3>
+<pre><code class="language-python"># Access first element
+first = arr[0]  # 1
+
+# Access last element
+last = arr[-1]  # 5 (Python)
+</code></pre>
+<h3>3. Modifying Elements</h3>
+<pre><code class="language-python">arr[0] = 10  # Change first element
+</code></pre>
+<h3>4. Traversing an Array</h3>
+<pre><code class="language-python"># Using for loop
+for i in range(len(arr)):
+    print(arr[i])
+
+# Using foreach
+for element in arr:
+    print(element)
+</code></pre>
+<h2>Time Complexity</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Time Complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Access</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<h2>Common Problems</h2>
+<ol>
+<li>Find the maximum element</li>
+<li>Find the minimum element</li>
+<li>Reverse an array</li>
+<li>Find duplicates</li>
+<li>Rotate an array</li>
+</ol>
+<h2>Practice Problems</h2>
+<p>Try solving these problems to master arrays:</p>
+<ul>
+<li>Two Sum</li>
+<li>Best Time to Buy and Sell Stock</li>
+<li>Contains Duplicate</li>
+<li>Product of Array Except Self</li>
+</ul>
+<h2>Key Takeaways</h2>
+<blockquote>
+<p>Arrays are the foundation of many other data structures and algorithms. Master them first!</p>
+</blockquote>
+<ul>
+<li>Arrays provide constant time access to elements</li>
+<li>They are memory efficient for storing sequential data</li>
+<li>Understanding arrays is crucial for solving complex problems</li>
+<li>Many advanced data structures are built on top of arrays</li>
+</ul>
+<hr>
+<p><strong>Next Topic</strong>: Day 2 - Array Algorithms and Patterns</p>
+
+            </article>
+
+            <div class="download-section">
+                <a href="../pdf-notes/day-1-arrays.pdf" class="download-btn" download>
+                    📥 Download PDF Notes
+                </a>
+            </div>
+
+            <nav class="page-navigation">
+                <a href="../index.html" class="nav-btn">← Back to Topics</a>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for learning DSA</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "dsa-notes",
+  "version": "1.0.0",
+  "description": "DSA Notes Static Website Generator",
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "serve": "python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "marked": "^9.1.6"
+  },
+  "devDependencies": {}
+}

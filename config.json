@@ -1,0 +1,11 @@
+{
+  "topics": [
+    {
+      "day": "Day 1",
+      "title": "Introduction to Arrays",
+      "description": "Learn about arrays, their properties, and basic operations",
+      "folder": "day-1",
+      "pdfFile": "day-1-arrays.pdf"
+    }
+  ]
+}
