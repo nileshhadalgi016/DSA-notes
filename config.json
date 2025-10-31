@@ -11,6 +11,12 @@
       "title": "Data Structures and Algorithms: Lists and Arrays in Python",
       "description": "## Table of Contents...",
       "folder": "day-2"
+    },
+    {
+      "day": "Day 3",
+      "title": "Stacks with Python",
+      "description": "## Introduction...",
+      "folder": "day-3"
     }
   ]
 }

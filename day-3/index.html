@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacks with Python - DSA Notes</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/markdown.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="breadcrumb">
+                <a href="../index.html">🏠 Home</a>
+                <span class="separator">/</span>
+                <span>Stacks with Python</span>
+            </nav>
+        </header>
+
+        <main class="content">
+            <article class="markdown-body">
+                <h1>Stacks with Python</h1>
+<h2>Introduction</h2>
+<p>A stack is a linear data structure that follows the <strong>Last-In-First-Out (LIFO)</strong> principle. Think of it like a stack of pancakes - you can only add or remove pancakes from the top.</p>
+<h2>What is a Stack?</h2>
+<p>A stack is a data structure that can hold many elements, and the last element added is the first one to be removed. Like a pile of pancakes, the pancakes are both added and removed from the top. So when removing a pancake, it will always be the last pancake you added. This way of organizing elements is called <strong>LIFO: Last In First Out</strong>.</p>
+<h2>Basic Stack Operations</h2>
+<p>Basic operations we can do on a stack are:</p>
+<ul>
+<li><strong>Push</strong>: Adds a new element on the stack</li>
+<li><strong>Pop</strong>: Removes and returns the top element from the stack</li>
+<li><strong>Peek</strong>: Returns the top (last) element on the stack</li>
+<li><strong>isEmpty</strong>: Checks if the stack is empty</li>
+<li><strong>Size</strong>: Finds the number of elements in the stack</li>
+</ul>
+<h2>Implementation Methods</h2>
+<p>Stacks can be implemented by using:</p>
+<ul>
+<li>Arrays (Python lists)</li>
+<li>Linked lists</li>
+</ul>
+<h2>Stack Uses</h2>
+<p>Stacks can be used to:</p>
+<ul>
+<li>Implement undo mechanisms</li>
+<li>Revert to previous states</li>
+<li>Create algorithms for depth-first search in graphs</li>
+<li>Enable backtracking</li>
+</ul>
+<p>Stacks are often mentioned together with Queues, which is a similar data structure.</p>
+<h2>Stack Implementation using Python Lists</h2>
+<p>For Python lists (and arrays), a stack follows this behavior:</p>
+<pre><code>x = [5, 6, 2, 9, 3, 8, 4, 2]
+Add: →  Remove: ←
+</code></pre>
+<h3>Simple List-Based Stack</h3>
+<p>Since Python lists have good support for functionality needed to implement stacks, we can create a stack with just a few lines:</p>
+<pre><code class="language-python">stack = []
+
+# Push
+stack.append(&#39;A&#39;)
+stack.append(&#39;B&#39;)
+stack.append(&#39;C&#39;)
+print(&quot;Stack: &quot;, stack)
+
+# Peek
+topElement = stack[-1]
+print(&quot;Peek: &quot;, topElement)
+
+# Pop
+poppedElement = stack.pop()
+print(&quot;Pop: &quot;, poppedElement)
+
+# Stack after Pop
+print(&quot;Stack after Pop: &quot;, stack)
+
+# isEmpty
+isEmpty = not bool(stack)
+print(&quot;isEmpty: &quot;, isEmpty)
+
+# Size
+print(&quot;Size: &quot;, len(stack))
+</code></pre>
+<h3>Class-Based Stack Implementation</h3>
+<p>While Python lists can be used as stacks, creating a dedicated Stack class provides better encapsulation and additional functionality:</p>
+<pre><code class="language-python">class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, element):
+        self.stack.append(element)
+
+    def pop(self):
+        if self.isEmpty():
+            return &quot;Stack is empty&quot;
+        return self.stack.pop()
+
+    def peek(self):
+        if self.isEmpty():
+            return &quot;Stack is empty&quot;
+        return self.stack[-1]
+
+    def isEmpty(self):
+        return len(self.stack) == 0
+
+    def size(self):
+        return len(self.stack)
+
+# Create a stack
+myStack = Stack()
+
+myStack.push(&#39;A&#39;)
+myStack.push(&#39;B&#39;)
+myStack.push(&#39;C&#39;)
+
+print(&quot;Stack: &quot;, myStack.stack)
+print(&quot;Pop: &quot;, myStack.pop())
+print(&quot;Stack after Pop: &quot;, myStack.stack)
+print(&quot;Peek: &quot;, myStack.peek())
+print(&quot;isEmpty: &quot;, myStack.isEmpty())
+print(&quot;Size: &quot;, myStack.size())
+</code></pre>
+<h3>Pros and Cons of List/Array Implementation</h3>
+<p><strong>Reasons to implement stacks using lists/arrays:</strong></p>
+<ul>
+<li><strong>Memory Efficient</strong>: Array elements do not hold the next element&#39;s address like linked list nodes do</li>
+<li><strong>Easier to implement and understand</strong>: Using arrays to implement stacks requires less code than using linked lists</li>
+</ul>
+<p><strong>Reason for not using arrays:</strong></p>
+<ul>
+<li><strong>Fixed size</strong>: An array occupies a fixed part of memory. This means it could take up more memory than needed, or if the array fills up, it cannot hold more elements</li>
+</ul>
+<h2>Stack Implementation using Linked Lists</h2>
+<p>A linked list consists of nodes with some sort of data, and a pointer to the next node.</p>
+<p>A big benefit with using linked lists is that nodes are stored wherever there is free space in memory - the nodes do not have to be stored contiguously right after each other like elements in arrays. Another advantage is that when adding or removing nodes, the rest of the nodes in the list do not have to be shifted.</p>
+<h3>Linked List Stack Implementation</h3>
+<pre><code class="language-python">class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.head = None
+        self.size = 0
+
+    def push(self, value):
+        new_node = Node(value)
+        if self.head:
+            new_node.next = self.head
+        self.head = new_node
+        self.size += 1
+
+    def pop(self):
+        if self.isEmpty():
+            return &quot;Stack is empty&quot;
+        popped_node = self.head
+        self.head = self.head.next
+        self.size -= 1
+        return popped_node.value
+
+    def peek(self):
+        if self.isEmpty():
+            return &quot;Stack is empty&quot;
+        return self.head.value
+
+    def isEmpty(self):
+        return self.size == 0
+
+    def stackSize(self):
+        return self.size
+
+    def traverseAndPrint(self):
+        currentNode = self.head
+        while currentNode:
+            print(currentNode.value, end=&quot; -&gt; &quot;)
+            currentNode = currentNode.next
+        print()
+
+# Usage
+myStack = Stack()
+myStack.push(&#39;A&#39;)
+myStack.push(&#39;B&#39;)
+myStack.push(&#39;C&#39;)
+
+print(&quot;LinkedList: &quot;, end=&quot;&quot;)
+myStack.traverseAndPrint()
+print(&quot;Peek: &quot;, myStack.peek())
+print(&quot;Pop: &quot;, myStack.pop())
+print(&quot;LinkedList after Pop: &quot;, end=&quot;&quot;)
+myStack.traverseAndPrint()
+print(&quot;isEmpty: &quot;, myStack.isEmpty())
+print(&quot;Size: &quot;, myStack.stackSize())
+</code></pre>
+<h3>Pros and Cons of Linked List Implementation</h3>
+<p><strong>Reason for using linked lists:</strong></p>
+<ul>
+<li><strong>Dynamic size</strong>: The stack can grow and shrink dynamically, unlike with arrays</li>
+</ul>
+<p><strong>Reasons for not using linked lists:</strong></p>
+<ul>
+<li><strong>Extra memory</strong>: Each stack element must contain the address to the next element (the next linked list node)</li>
+<li><strong>Readability</strong>: The code might be harder to read and write for some because it is longer and more complex</li>
+</ul>
+<h2>Common Stack Applications</h2>
+<p>Stacks are used in many real-world scenarios:</p>
+<ul>
+<li><strong>Undo/Redo operations</strong> in text editors</li>
+<li><strong>Browser history</strong> (back/forward navigation)</li>
+<li><strong>Function call stack</strong> in programming</li>
+<li><strong>Expression evaluation</strong> and parsing</li>
+</ul>
+<hr>
+<p><em>Understanding stacks is fundamental to computer science and programming, as they form the basis for many algorithms and are used extensively in software development.</em></p>
+
+            </article>
+
+            <div class="download-section">
+                <a href="stacks-with-python.pdf" class="download-btn" download>
+                📥 Download as PDF
+            </a>
+            </div>
+
+            <nav class="page-navigation">
+                <a href="../index.html" class="nav-btn">← Back to Topics</a>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Made with ❤️ for learning DSA</p>
+        </footer>
+    </div>
+</body>
+</html>
