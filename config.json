@@ -17,6 +17,12 @@
       "title": "Mastering Stacks in Python: A Comprehensive Guide",
       "description": "## Understanding Stacks: The Foundation...",
       "folder": "day-3"
+    },
+    {
+      "day": "Day 4",
+      "title": "Queues Data Structure in Python",
+      "description": "## Definition...",
+      "folder": "day-4"
     }
   ]
 }
