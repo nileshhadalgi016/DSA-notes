@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Roadmap 2026-27</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/paper.css">
+    <link rel="stylesheet" href="../styles/markdown.css">
+</head>
+<body>
+    <div class="paper-wrapper">
+        <nav class="breadcrumb-trail">
+            <a href="../index.html">🏠 Home</a>
+            <span>/</span>
+            <span>Python Roadmap 2026-27</span>
+        </nav>
+
+        <header class="paper-header">
+            <h1>Python Roadmap 2026-27</h1>
+            <p>An ink-on-paper styled plan for the next two learning cycles.</p>
+        </header>
+
+        <main class="paper-content">
+            <article id="roadmap-content" class="markdown-body">
+                <p>Loading roadmap notes...</p>
+            </article>
+        </main>
+
+        <div class="download-sticker">
+            <a id="roadmap-pdf" class="download-btn disabled" data-pdf="13f8949c-d4cd-4f43-a8c7-50da884e46a2_Python_Roadmap_2026-27_-_Complete_Resource_Guide.pdf" href="#" download>
+                📥 Download Roadmap PDF
+            </a>
+        </div>
+        <span id="download-status" class="download-status">Drop your PDF into this folder to activate the button.</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+    async function renderRoadmap() {
+        const contentElement = document.getElementById('roadmap-content');
+        try {
+            const response = await fetch('README.md');
+            if (!response.ok) {
+                throw new Error('README not found');
+            }
+            const markdown = await response.text();
+            contentElement.innerHTML = marked.parse(markdown);
+        } catch (error) {
+            console.warn('Unable to load README.md:', error.message);
+            contentElement.innerHTML = '<div class="missing-message">Add your <strong>README.md</strong> here to see the roadmap rendered in place.</div>';
+        }
+    }
+
+    async function setupDownloadButton() {
+        const downloadLink = document.getElementById('roadmap-pdf');
+        const statusText = document.getElementById('download-status');
+        const pdfPath = downloadLink.dataset.pdf || downloadLink.getAttribute('href');
+
+        if (!pdfPath || pdfPath === '#') {
+            downloadLink.classList.add('disabled');
+            statusText.textContent = 'Drop your PDF into this folder to activate the button.';
+            return;
+        }
+
+        downloadLink.href = pdfPath;
+
+        try {
+            const response = await fetch(pdfPath, { method: 'HEAD' });
+            if (!response.ok) {
+                throw new Error('PDF missing');
+            }
+            downloadLink.classList.remove('disabled');
+            statusText.textContent = 'Ready to download the roadmap PDF.';
+        } catch (error) {
+            downloadLink.classList.add('disabled');
+            statusText.textContent = 'PDF not found. Ensure the file name matches exactly.';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderRoadmap();
+        setupDownloadButton();
+    });
+    </script>
+</body>
+</html>
