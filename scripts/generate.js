@@ -97,7 +97,24 @@ folders.forEach(folder => {
 });
 
 // Auto-generate/update config.json
-const config = { topics };
+let extraTopics = [];
+
+if (fs.existsSync(CONFIG_PATH)) {
+    try {
+        const existingConfig = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+        if (Array.isArray(existingConfig.extraTopics)) {
+            extraTopics = [...existingConfig.extraTopics].sort((a, b) => {
+                const orderA = typeof a.order === 'number' ? a.order : 0;
+                const orderB = typeof b.order === 'number' ? b.order : 0;
+                return orderA - orderB;
+            });
+        }
+    } catch (error) {
+        console.warn('⚠️  Unable to read existing config.json extras:', error.message);
+    }
+}
+
+const config = { topics, extraTopics };
 fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf8');
 console.log(`\n📝 Updated config.json with ${topics.length} topics`);
 

@@ -1,0 +1,201 @@
+:root {
+    --paper-background: #fdfbf5;
+    --paper-border: #e0d7c6;
+    --paper-line: rgba(82, 63, 37, 0.08);
+    --ink: #3a2f22;
+    --accent: #b7791f;
+    --accent-dark: #8b5a13;
+    --tape-color: rgba(241, 196, 125, 0.75);
+}
+
+body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #e8dfcf;
+    font-family: 'Kalam', 'Bradley Hand', 'Georgia', serif;
+    color: var(--ink);
+}
+
+.paper-wrapper {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto 80px;
+    background: var(--paper-background);
+    border: 1px solid var(--paper-border);
+    box-shadow: 0 20px 40px rgba(70, 52, 32, 0.2);
+    padding: 60px 60px 80px;
+    border-radius: 12px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 28px,
+        var(--paper-line) 29px
+    );
+}
+
+.paper-wrapper::before,
+.paper-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 40px;
+    top: -20px;
+    background: var(--tape-color);
+    transform: rotate(-6deg);
+    z-index: 1;
+    border-radius: 6px;
+    filter: blur(0.4px);
+}
+
+.paper-wrapper::after {
+    right: 60px;
+    transform: rotate(5deg);
+}
+
+.paper-wrapper::before {
+    left: 60px;
+}
+
+.paper-header {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 40px;
+}
+
+.paper-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.paper-header p {
+    font-size: 1.05rem;
+    color: rgba(58, 47, 34, 0.8);
+}
+
+.breadcrumb-trail {
+    display: inline-flex;
+    gap: 12px;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.breadcrumb-trail a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(139, 90, 19, 0.4);
+}
+
+.breadcrumb-trail a:hover {
+    border-bottom-color: rgba(139, 90, 19, 0.8);
+}
+
+.paper-content {
+    position: relative;
+    z-index: 2;
+}
+
+.paper-content .markdown-body {
+    background: transparent;
+    color: var(--ink);
+    padding: 0;
+    font-size: 1.05rem;
+}
+
+.paper-content .markdown-body h2,
+.paper-content .markdown-body h3,
+.paper-content .markdown-body h4,
+.paper-content .markdown-body h5 {
+    color: var(--accent-dark);
+    margin-top: 32px;
+}
+
+.paper-content .markdown-body code,
+.paper-content .markdown-body pre {
+    background: rgba(255, 255, 240, 0.85);
+    border: 1px solid rgba(139, 90, 19, 0.15);
+}
+
+.paper-content .markdown-body blockquote {
+    background: rgba(255, 247, 226, 0.7);
+    border-left: 4px solid var(--accent);
+}
+
+.download-sticker {
+    position: sticky;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+    margin-top: 60px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: #fff8e6;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(139, 90, 19, 0.3);
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(139, 90, 19, 0.28);
+    background: var(--accent-dark);
+}
+
+.download-btn.disabled {
+    background: rgba(139, 90, 19, 0.35);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.download-status {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: rgba(58, 47, 34, 0.75);
+}
+
+.missing-message {
+    background: rgba(255, 236, 200, 0.7);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px dashed rgba(183, 121, 31, 0.6);
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .paper-wrapper {
+        padding: 40px 22px 60px;
+    }
+
+    .paper-wrapper::before,
+    .paper-wrapper::after {
+        width: 90px;
+        height: 30px;
+        top: -16px;
+    }
+
+    .paper-header h1 {
+        font-size: 2.1rem;
+    }
+
+    .download-sticker {
+        bottom: 16px;
+    }
+}

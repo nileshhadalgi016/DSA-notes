@@ -3,12 +3,17 @@ async function loadTopics() {
     try {
         const response = await fetch('config.json');
         const config = await response.json();
-        
+
         const container = document.getElementById('topics-container');
         container.innerHTML = '';
-        
-        if (config.topics && config.topics.length > 0) {
-            config.topics.forEach(topic => {
+
+        const mergedTopics = [
+            ...(Array.isArray(config.topics) ? config.topics : []),
+            ...(Array.isArray(config.extraTopics) ? config.extraTopics : [])
+        ];
+
+        if (mergedTopics.length > 0) {
+            mergedTopics.forEach(topic => {
                 const card = document.createElement('a');
                 card.href = `${topic.folder}/index.html`;
                 card.className = 'topic-card';

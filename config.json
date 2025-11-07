@@ -24,5 +24,14 @@
       "description": "## Definition...",
       "folder": "day-4"
     }
+  ],
+  "extraTopics": [
+    {
+      "day": "Roadmap",
+      "title": "Python Roadmap 2026-27",
+      "description": "A two-year plan for deep-diving into Python fundamentals, projects, and interview prep.",
+      "folder": "python-roadmap-2026-27",
+      "order": 10
+    }
   ]
 }
