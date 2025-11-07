@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Roadmap Video...</title>
+    <meta http-equiv="refresh" content="0;url=https://www.youtube.com/watch?v=Bv1fGsr7zio">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .card {
+            text-align: center;
+            padding: 32px 40px;
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 35px rgba(15, 23, 42, 0.4);
+        }
+        .card h1 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        .card p {
+            margin-bottom: 24px;
+            color: #cbd5f5;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 26px;
+            text-decoration: none;
+            color: #0f172a;
+            background: #38bdf8;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(56, 189, 248, 0.25);
+        }
+        .note {
+            font-size: 0.85rem;
+            margin-top: 18px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Opening Roadmap Video</h1>
+        <p>If the YouTube app doesn’t open automatically, tap the button below.</p>
+        <a class="btn" id="open-app" href="youtube://Bv1fGsr7zio">▶️ Open in YouTube App</a>
+        <p class="note">If the app is unavailable, you’ll be redirected to YouTube in your browser shortly.</p>
+    </div>
+
+    <script>
+        (function redirect() {
+            try {
+                window.location.replace('youtube://Bv1fGsr7zio');
+            } catch (error) {
+                console.warn('Custom scheme redirect failed:', error);
+            }
+        })();
+    </script>
+</body>
+</html>
