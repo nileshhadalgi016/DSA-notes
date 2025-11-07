@@ -4,37 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Roadmap 2026-27</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/paper.css">
     <link rel="stylesheet" href="../styles/markdown.css">
 </head>
 <body>
-    <div class="paper-wrapper">
-        <nav class="breadcrumb-trail">
-            <a href="../index.html">🏠 Home</a>
-            <span>/</span>
-            <span>Python Roadmap 2026-27</span>
-        </nav>
-
-        <header class="paper-header">
-            <h1>Python Roadmap 2026-27</h1>
-            <p>An ink-on-paper styled plan for the next two learning cycles.</p>
+    <div class="container">
+        <header>
+            <a class="back-link" href="../index.html">← Back to Topics</a>
+            <h1>Complete Python Roadmap 2026-27</h1>
+            <p class="subtitle">Your Ultimate Learning Resource Guide</p>
         </header>
 
-        <main class="paper-content">
+        <section class="main-content">
             <article id="roadmap-content" class="markdown-body">
                 <p>Loading roadmap notes...</p>
             </article>
-        </main>
 
-        <div class="download-sticker">
-            <a id="roadmap-pdf" class="download-btn disabled" data-pdf="13f8949c-d4cd-4f43-a8c7-50da884e46a2_Python_Roadmap_2026-27_-_Complete_Resource_Guide.pdf" href="#" download>
-                📥 Download Roadmap PDF
-            </a>
-        </div>
-        <span id="download-status" class="download-status">Drop your PDF into this folder to activate the button.</span>
+            <div class="download-wrapper">
+                <a id="roadmap-pdf" class="download-button disabled" data-pdf="13f8949c-d4cd-4f43-a8c7-50da884e46a2_Python_Roadmap_2026-27_-_Complete_Resource_Guide.pdf" href="#" download>
+                    📥 Download Roadmap PDF
+                </a>
+            </div>
+        </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -55,13 +46,11 @@
     }
 
     async function setupDownloadButton() {
-        const downloadLink = document.getElementById('roadmap-pdf');
-        const statusText = document.getElementById('download-status');
+    const downloadLink = document.getElementById('roadmap-pdf');
         const pdfPath = downloadLink.dataset.pdf || downloadLink.getAttribute('href');
 
         if (!pdfPath || pdfPath === '#') {
             downloadLink.classList.add('disabled');
-            statusText.textContent = 'Drop your PDF into this folder to activate the button.';
             return;
         }
 
@@ -73,10 +62,8 @@
                 throw new Error('PDF missing');
             }
             downloadLink.classList.remove('disabled');
-            statusText.textContent = 'Ready to download the roadmap PDF.';
         } catch (error) {
             downloadLink.classList.add('disabled');
-            statusText.textContent = 'PDF not found. Ensure the file name matches exactly.';
         }
     }
 
